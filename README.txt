@@ -1,0 +1,7 @@
+Kilka informacji:
+-Nie uwzględniałem parsowania danych przy inputach, także można wpisać głupoty i przejdzie (ale w instrukcji nic o tym nie było)
+-Proprcja dżungli to u mnie liczba całkowita określająca stosunek wielkości boku dżungli do całej mapy (np 2 -> dżungla ma połowę szerokości i wysokości) wartość jest zaokrąglana
+-Mapa nie skaluje się, a komórki mają zawsze wielkość 20x20, ze względu na konieczność umieszczenia wszystkich wymaganych obiektów (2 mapy, wykresy, statystyki) było to dosyć ciężko zmieścić na pojedynczym ekranie, dlatego interfejs graficzny nie będzie działał poprawnie dla większych map (choć jeżeli zrezygnowano by z interfejsu graficznego to logika powinna działać poprawne)
+-Na wykresie uwzględniłem tylko ilość trawy i zwierząt (tak jak na filmiku), domyślam się, że chodziło o uwzględnienie wszystkich 5 własności na wykresie (np średnia liczba potomków itp) ale sprawiało to że wykres był nieczytelny i pojawiały się problemy z wydajnością, dlatego celowo z tego zrezygnowałem
+-Ze względu na używanie zdjęć a nie kolorów prawdopodobnie większe mapy niż 30x30 mogą powodować problemy z wydajnością
+-nie działa liczba potomków śledzonego zwierzęcia i wskazanie dominującego genotypu, reszta powinna być ok

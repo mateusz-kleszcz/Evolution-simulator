@@ -43,11 +43,11 @@ public class SettingsMenu {
 
     // create settings menu
     public void createSettingsMenu() {
-        widthInput = createTextInput("Map width", "18", 0);
-        heightInput = createTextInput("Map height", "18", 1);
+        widthInput = createTextInput("Map width", "20", 0);
+        heightInput = createTextInput("Map height", "20", 1);
         animalNumberInput = createTextInput("Initial number of animals", "10", 2);
         animalEnergyInput = createTextInput("Initial animal energy", "100", 3);
-        moveEnergyInput = createTextInput("Animal move energy", "10", 4);
+        moveEnergyInput = createTextInput("Animal move energy", "1", 4);
         eatingEnergyInput = createTextInput("Energy after eating", "50", 5);
         jungleRatioInput = createTextInput("Proportion of width and height of jungle", "2", 6);
         isMagicInput = createCheckbox("Magic simulation ", false, 7);
