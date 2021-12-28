@@ -66,6 +66,7 @@ public class ThreadedSimulationEngine implements Runnable{
             Animal animal = new Animal(this.map, this.getRandomNonOccupiedPosition(), this.initialAnimalEnergy);
             spawnAnimal(animal);
         }
+        this.map.createPossibleSpawnGrassLocations();
     }
 
     public void spawnAnimal(Animal animal) {
