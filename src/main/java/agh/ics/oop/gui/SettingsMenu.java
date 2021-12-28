@@ -79,20 +79,23 @@ public class SettingsMenu {
             map = new WrappedMap(width, height, jungleRatio);
         }
 
+        // grid used in map visualization
         GridPane mapGridPane = new GridPane();
+        //statistic used in simulation
         GridPane statisticsPane = new GridPane();
         StatisticsVisualization statisticsVisualization = new StatisticsVisualization(statisticsPane);
         Statistics statistics = new Statistics(statisticsVisualization, isWrapped ? "wrapped.csv" : "bounded.csv");
 
+        //engine as a new thread
         ThreadedSimulationEngine simulationEngine = new ThreadedSimulationEngine(
                 map,
                 initialAnimalNumber,
                 initialAnimalEnergy,
                 moveEnergy,
                 eatingEnergy,
+                isSimulationMagic,
                 mapGridPane,
-                statistics,
-                isSimulationMagic
+                statistics
         );
 
         Thread engineThread = new Thread(simulationEngine);

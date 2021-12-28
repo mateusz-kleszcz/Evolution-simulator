@@ -32,7 +32,7 @@ public class ThreadedSimulationEngine implements Runnable{
     private final HashMap<Genotype, Integer> genotypes = new LinkedHashMap<Genotype, Integer>();
 
     // statistics and map
-    private final GridPane mapGridPane;
+    private final MapVisualization mapVisualization;
     private final Statistics statistics;
 
     // info about day
@@ -49,15 +49,15 @@ public class ThreadedSimulationEngine implements Runnable{
             double initialAnimalEnergy,
             int moveEnergy,
             double eatingEnergy,
+            boolean isSimulationMagic,
             GridPane mapGridPane,
-            Statistics statistics,
-            boolean isSimulationMagic
+            Statistics statistics
     ) {
         this.map = worldMap;
         this.initialAnimalEnergy = initialAnimalEnergy;
         this.moveEnergy = moveEnergy;
         this.eatingEnergy = eatingEnergy;
-        this.mapGridPane = mapGridPane;
+        this.mapVisualization = new MapVisualization(mapGridPane, this.map, this);
         this.statistics = statistics;
         this.isSimulationMagic = isSimulationMagic;
         this.magicRemains = 3;
@@ -66,10 +66,6 @@ public class ThreadedSimulationEngine implements Runnable{
             Animal animal = new Animal(this.map, this.getRandomNonOccupiedPosition(), this.initialAnimalEnergy);
             spawnAnimal(animal);
         }
-        // create grass
-        this.map.createPossibleSpawnGrassLocations();
-        // create simulation visualization
-        this.createSimulationPanel();
     }
 
     public void spawnAnimal(Animal animal) {
@@ -88,18 +84,6 @@ public class ThreadedSimulationEngine implements Runnable{
             position = new Vector2d(random.nextInt(width - 1), random.nextInt(height - 1));
         }
         return position;
-    }
-
-    public void createSimulationPanel() {
-        mapGridPane.getChildren().clear();
-        MapVisualization boundaryVisualization = new MapVisualization(this.map, this);
-        mapGridPane.add(boundaryVisualization.getGridMap(), 0, 0, 1, 1);
-    }
-
-    public void updateMap() {
-        mapGridPane.getChildren().clear();
-        MapVisualization boundaryVisualization = new MapVisualization(this.map, this);
-        mapGridPane.add(boundaryVisualization.getGridMap(), 0, 0, 1, 1);
     }
 
     public void setSelectedAnimal(Animal animal) {
@@ -209,7 +193,7 @@ public class ThreadedSimulationEngine implements Runnable{
                 }
             }
             Platform.runLater(() -> {
-                this.updateMap();
+                this.mapVisualization.updateVisualization();
                 this.statistics.generateOneDayStatistics(day, animals, this.map.getGrassNumber(), genotypes, deadAnimalsInCurrentDay, sumOfDeadAnimalsLifeLengthsInCurrentDay, this.selectedAnimal);
             });
             // delay between operations

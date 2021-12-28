@@ -2,7 +2,6 @@ package agh.ics.oop.simulation;
 
 import agh.ics.oop.classes.Animal;
 import agh.ics.oop.classes.Genotype;
-import agh.ics.oop.classes.Grass;
 import agh.ics.oop.gui.StatisticsVisualization;
 
 import java.io.File;
