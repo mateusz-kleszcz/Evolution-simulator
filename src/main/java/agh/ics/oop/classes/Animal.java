@@ -1,5 +1,5 @@
 package agh.ics.oop.classes;
-
+// w projekcie Javowym trudno znaleźć pakiet, który nie zawiera klas
 import agh.ics.oop.enums.MapDirection;
 import agh.ics.oop.interfaces.IMapElement;
 import agh.ics.oop.interfaces.IPositionChangeObserver;
@@ -20,7 +20,7 @@ public class Animal implements IPositionChangeObserver, IMapElement {
     private final IWorldMap map;
     private Genotype genotype;
     private int childrenNumber;
-    private int descendantNumber;
+    private int descendantNumber;   // używa Pan tego pola?
     private int deathDate = -1;
     private final ArrayList<IPositionChangeObserver> observersList = new ArrayList<>();
 
@@ -90,7 +90,7 @@ public class Animal implements IPositionChangeObserver, IMapElement {
         Vector2d newPosition;
         switch (moveGene) {
             case 0 -> newPosition = this.position.add(this.direction.toUnitVector());
-            case 4 -> newPosition = this.position.add(this.direction.toUnitVector().opposite());
+            case 4 -> newPosition = this.position.add(this.direction.toUnitVector().opposite());    // za miesiąc będzie Pan pamiętał, czemu akurat 4?
             default -> {
                 this.direction = this.direction.addDirections(moveGene);
                 newPosition = this.position;
@@ -99,7 +99,7 @@ public class Animal implements IPositionChangeObserver, IMapElement {
         // lose energy
         this.energy -= moveEnergy;
         // if map is wrapped, calculate is animal getting to the other side
-        if (this.map instanceof WrappedMap) {
+        if (this.map instanceof WrappedMap) {   // a jakby rodzajów mapy było więcej, to zwierzę musiałoby mieć świadomość każdego?
             newPosition = ((WrappedMap) this.map).getWrappedPosition(newPosition);
         }
 

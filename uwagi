@@ -1,0 +1,5 @@
+Nie da się uruchomić - brak "id 'application'" i głównej klasy
+Magiczność symulacji powinna być ustawiana dla każdej mapy osobno
+Program się nie wyłącza po zamknięciu okna
+Przy większych mapach nie widać granicy między nimi
+Pliki CSV się czyszczą po uruchomieniu

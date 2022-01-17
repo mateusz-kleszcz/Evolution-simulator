@@ -8,7 +8,7 @@ public class Genotype {
     private static final int genotypeSize = 32;
     private static final int genotypeMinValue = 0;
     private static final int genotypeMaxValue = 7;
-    private static final Random randomObject = new Random();
+    private static final Random randomObject = new Random();    // randomObject = losowy obiekt
 
     private final int[] genes;
 
@@ -18,11 +18,11 @@ public class Genotype {
     }
 
     public Genotype(int[] genes) {
-        this.genes = genes;
+        this.genes = genes; // brak kontroli poprawności
     }
 
     public int[] getGenes() {
-        return this.genes;
+        return this.genes;  // zwraca Pan na zewnątrz obiekt modyfikowalny
     }
 
     public int getRandomGene() {

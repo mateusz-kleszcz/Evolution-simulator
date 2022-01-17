@@ -1,5 +1,5 @@
 package agh.ics.oop.enums;
-
+// tak samo jak z interfejsami
 import agh.ics.oop.classes.Vector2d;
 
 import java.util.Arrays;
@@ -36,7 +36,7 @@ public enum MapDirection {
 
     public Vector2d toUnitVector() {
         return switch (this) {
-            case NORTH -> new Vector2d(0, 1);
+            case NORTH -> new Vector2d(0, 1);   // nowy wektor co wywołanie
             case NORTHEAST -> new Vector2d(1, 1);
             case EAST -> new Vector2d(1, 0);
             case SOUTHEAST -> new Vector2d(1, -1);
@@ -51,7 +51,7 @@ public enum MapDirection {
         return values.get(random.nextInt(size));
     }
 
-    public MapDirection addDirections(int addedValue) {
+    public MapDirection addDirections(int addedValue) { // proszę się zastanowić nad tą nazwą
         return values.get((this.getIntValue() + addedValue) % size);
     }
 }

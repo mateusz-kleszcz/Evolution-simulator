@@ -10,7 +10,7 @@ import java.util.*;
 
 public class AbstractWorldMap implements IWorldMap, IPositionChangeObserver {
 
-    protected final Random random = new Random();
+    protected static final Random random = new Random();
 
     protected final Map<Vector2d, ArrayList<Animal>> animals = new LinkedHashMap<Vector2d, ArrayList<Animal>>();
     protected final Map<Vector2d, Grass> grasses = new LinkedHashMap<Vector2d, Grass>();
@@ -24,7 +24,7 @@ public class AbstractWorldMap implements IWorldMap, IPositionChangeObserver {
 
     // possible positions where grass can grow
     protected final Map<Vector2d, Boolean> possibleGrassPositionsStep = new LinkedHashMap<Vector2d, Boolean>();
-    protected final Map<Vector2d, Boolean> possibleGrassPositionsJungle = new LinkedHashMap<Vector2d, Boolean>();
+    protected final Map<Vector2d, Boolean> possibleGrassPositionsJungle = new LinkedHashMap<Vector2d, Boolean>();   // czy zbiór wektorów nie byłby lepszy?
 
     public AbstractWorldMap (
             int width,
@@ -52,7 +52,7 @@ public class AbstractWorldMap implements IWorldMap, IPositionChangeObserver {
     }
 
     public Map<Vector2d, ArrayList<Animal>> getAnimals() {
-        return this.animals;
+        return this.animals;    // zwraca Pan na zewnątrz obiekt modyfikowalny
     }
 
     public int getGrassNumber() {
@@ -87,14 +87,10 @@ public class AbstractWorldMap implements IWorldMap, IPositionChangeObserver {
 
     // check is given position is jungle or step, returns jungle or step possible grass positions
     public boolean isPositionJungle(Vector2d position) {
-        if (position.precedes(this.jungleUpperRight) && position.follows(this.jungleLowerLeft)) {
-            return true;
-        } else {
-            return false;
-        }
+        return position.precedes(this.jungleUpperRight) && position.follows(this.jungleLowerLeft);  // IntelliJ to zmienił
     }
 
-    public Map<Vector2d, Boolean> getPossibleGrass(Vector2d position) {
+    public Map<Vector2d, Boolean> getPossibleGrass(Vector2d position) { // czy to powinno być publiczne? + mało czytelna nazwa
         if (this.isPositionJungle(position)) {
             return this.possibleGrassPositionsJungle;
         } else {
@@ -102,7 +98,7 @@ public class AbstractWorldMap implements IWorldMap, IPositionChangeObserver {
         }
     };
 
-    public void createPossibleSpawnGrassLocations() {
+    public void createPossibleSpawnGrassLocations() {   // czy to powinno być publiczne?
         // check all possible coordinates
         for (int i = 0; i <= this.width; i++) {
             for (int j = 0; j <= height; j++) {
